@@ -1,0 +1,26 @@
+body {
+    background-color: bisque;
+}
+
+header, section {
+    background-color: white;
+    width: 60%;
+    margin: 5px auto;
+    padding: 10px;
+}
+
+header input, header button {
+    display: inline-block;
+    padding: 0.8em;
+    margin: 1em;
+    width: 15%;
+}
+
+ol li {
+    border-bottom: 1px solid lightgray;
+    padding: 10px;
+}
+
+ol li span {
+    float: right;
+}
