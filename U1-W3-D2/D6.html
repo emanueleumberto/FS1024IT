@@ -216,10 +216,39 @@
        La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
     */
 
+    let arrObj = [
+        {
+          immagine: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQqgIxwJ2WQ7Lakca2aSPIiYiqq7i_RHB5mvGqWg-bzDbGO1Z_DQeKL5iorXn9QrAkwLc1iJBxS33dhRFjfvIk',
+          nome: 'Test',
+          quantita: 3,
+          prezzo: 25.50
+        },
+        {
+          immagine: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQqgIxwJ2WQ7Lakca2aSPIiYiqq7i_RHB5mvGqWg-bzDbGO1Z_DQeKL5iorXn9QrAkwLc1iJBxS33dhRFjfvIk',
+          nome: 'iphone',
+          quantita: 5,
+          prezzo: 800.99
+        },
+        {
+          immagine: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQqgIxwJ2WQ7Lakca2aSPIiYiqq7i_RHB5mvGqWg-bzDbGO1Z_DQeKL5iorXn9QrAkwLc1iJBxS33dhRFjfvIk',
+          nome: 'Tv',
+          quantita: 2,
+          prezzo: 400
+        },
+        {
+          immagine: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQqgIxwJ2WQ7Lakca2aSPIiYiqq7i_RHB5mvGqWg-bzDbGO1Z_DQeKL5iorXn9QrAkwLc1iJBxS33dhRFjfvIk',
+          nome: 'Tablet',
+          quantita: 8,
+          prezzo: 250
+        }
+      ]
+
       const generateTable = function () {
         let div = document.querySelector('#tableArea');
         let table = document.createElement('table')
-        /* table.innerHTML = `
+        /* 
+        // Soluzione 1
+        table.innerHTML = `
           <tr>
             <th>immagine</th>
             <th>nome prodotto</th>
@@ -234,18 +263,44 @@
           </tr>
         ` */
 
-        let arrObj = [{
-          img: 'https://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQqgIxwJ2WQ7Lakca2aSPIiYiqq7i_RHB5mvGqWg-bzDbGO1Z_DQeKL5iorXn9QrAkwLc1iJBxS33dhRFjfvIk',
-          nome: 'Test',
-          quantita: 3,
-          prezzo: 25
-        }]
-
-        for(let i=0; i<5; i++){
-          let tr = document.createElement('tr');
+        
+          /* 
+          // Soluzione 2
           let td = document.createElement('td')
-          td.innerHTML = '<img src="'+ arrObj[i].img +'" />' 
+          td.innerHTML = '<img src="'+ arrObj[i].img +'" width="100" />' 
           tr.appendChild(td)
+          let td2 = document.createElement('td')
+          td2.innerHTML = arrObj[i].nome
+          tr.appendChild(td2)
+          let td3 = document.createElement('td')
+          td3.innerHTML = arrObj[i].quantita
+          tr.appendChild(td3)
+          let td4 = document.createElement('td')
+          td4.innerHTML = arrObj[i].prezzo
+          tr.appendChild(td4) */
+
+        // Soluzione 3
+        // Creo le intestazioni di colonna
+        let tr = document.createElement('tr');
+        for (const key in arrObj[0]) {   
+          let th = document.createElement('th')
+          th.innerHTML = key
+          tr.appendChild(th)
+        }
+        table.appendChild(tr)
+        // Creo ogni riga della tabella
+        for(let i=0; i<arrObj.length; i++){
+          let tr = document.createElement('tr');
+          for (const key in arrObj[i]) {
+            //console.log(arrObj[i][key])
+            let td = document.createElement('td')
+            if(key === 'immagine') {
+              td.innerHTML = '<img src="'+ arrObj[i][key] +'" width="100" />' 
+            } else {
+              td.innerHTML = arrObj[i][key]
+            }
+            tr.appendChild(td)
+          }
           table.appendChild(tr)
         }
         div.appendChild(table)
@@ -257,19 +312,58 @@
        fornisca i dati necessari come parametri
     */
 
-      const addRow = function () {}
+      const addRow = function (img, nome, quantita, prezzo) {
+        let table = document.querySelector('#tableArea table')
+        let tr = document.createElement('tr');
+          
+        let td = document.createElement('td')
+        td.innerHTML = '<img src="'+ img +'" width="100" />' 
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerHTML = nome
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerHTML = quantita
+        tr.appendChild(td)
+
+        td = document.createElement('td')
+        td.innerHTML = prezzo
+        tr.appendChild(td)
+
+        table.appendChild(tr)
+
+      }
+      addRow('https://cdn-icons-png.flaticon.com/512/219/219983.png', 'Mio Prodotto', 1, 10)
 
       /* ESERCIZIO 14
       Crea una funzione che nasconda le immagini della tabella quando eseguita
     */
 
-      const hideAllImages = function () {}
+      const hideAllImages = function () {
+        let images = document.querySelectorAll('#tableArea table tr td img')
+        images.forEach(img => img.style.display = 'none')
+      }
+
+      //hideAllImages()
 
       /* EXTRA ESERCIZIO 15
       Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
     */
 
-      const changeColorWithRandom = function () {}
+      const changeColorWithRandom = function () {
+        let h2 = document.querySelector('h2#changeMyColor')
+        h2.onclick = function() {
+          let r = Math.round(Math.random()*255)
+          let g = Math.round(Math.random()*255)
+          let b = Math.round(Math.random()*255)
+          console.log(r,g,b)
+          //h2.style.color = 'rgb('+r+','+g+','+b+')'
+          h2.style.color = `rgb(${r},${g},${b})`
+        }
+      }
+      changeColorWithRandom()
     </script>
   </body>
 </html>
