@@ -1,0 +1,94 @@
+/* selettore universale -> applica le regole di formattazione ad ogni elemento della pagina */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #131334;
+    color: #ebebeb;
+    font-family: "Outfit", sans-serif;
+}
+
+.container {
+    max-width: 780px;
+    margin: auto;
+}
+
+#calendar {
+    background-color: #0c0b1d;
+    color: #ebebeb;
+    border-radius: 10px;
+}
+
+.day {
+    border: 1px solid #15132e;
+    width: 14.2%;
+    height: 100px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #15132e;
+}
+
+.day h3 {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+
+.color-epic {
+    color: #ba51d7;;
+}
+
+h1 {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#addMeeting div {
+    display: inline-block;
+    margin-right: 3rem;
+}
+
+#addMeeting form {
+    display: inline-block;
+}
+
+form input {
+    padding: 10px;
+    background-color: #15132e;
+    color: #ebebeb;
+    border: none;
+    font-weight: 600;
+}
+
+form button {
+    background-color: #ba51d7;
+    color: #ebebeb;
+    border: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#newMeetingTime::-webkit-calendar-picker-indicator {
+    background-color: #ba51d7;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.selected {
+    border: 1px solid #7a408a;
+}
+
